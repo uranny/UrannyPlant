@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@plugin "daisyui";
+.material-icons {
+  font-family: 'Material Icons';
+  display: inline-block;
+}
+
+* {
+  -webkit-user-drag: none;
+}
