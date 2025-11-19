@@ -22,7 +22,7 @@ export default function Signin() {
 
     return (
         <div>
-            <h2>로그인 / 회원가입</h2>
+            <h2>로그인</h2>
             <input type="email" value={email} placeholder="이메일" onChange={(e) => setEmail(e.target.value)} />
             <input type="password" value={password} placeholder="비밀번호" onChange={(e) => setPassword(e.target.value)} />
             <button onClick={handleSignIn}>로그인</button>
