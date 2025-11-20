@@ -2,6 +2,7 @@ import { useState } from "react";
 import { auth, db } from "../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
+import { useNavigate } from "react-router";
 
 const gridMap: { [key: string]: [number, number] } = {
   서울특별시: [60, 127],
@@ -29,6 +30,7 @@ export default function Signup() {
   const [password, setPassword] = useState<string>("");
   const [location, setLocation] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const navigate = useNavigate()
 
   const handleSignUp = async () => {
     setError("");
@@ -58,6 +60,7 @@ export default function Signup() {
       });
 
       console.log("회원가입 성공:", user);
+      navigate("/main");
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
@@ -91,6 +94,7 @@ export default function Signup() {
       </select>
       <button onClick={handleSignUp}>회원가입</button>
       {error && <p style={{ color: "red" }}>{error}</p>}
+      <button onClick={() => navigate(-1)}>로그인하러 가기</button>
     </div>
   );
 }
