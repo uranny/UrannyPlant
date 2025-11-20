@@ -1,17 +1,20 @@
 import { useState } from 'react';
 import { auth } from '../../firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router';
 
 export default function Signin() {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [error, setError] = useState<string>('');
+    const navigate = useNavigate()
 
     const handleSignIn = async () => {
         setError('');
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             console.log('로그인 성공:', userCredential.user);
+            navigate('/main')
         } catch (err) {
             if (err instanceof Error) {
                 setError(err.message);
@@ -27,6 +30,7 @@ export default function Signin() {
             <input type="password" value={password} placeholder="비밀번호" onChange={(e) => setPassword(e.target.value)} />
             <button onClick={handleSignIn}>로그인</button>
             {error && <p style={{ color: 'red' }}>{error}</p>}
+            <button onClick={() => navigate('/sign-up')}>회원가입 하러 가기</button>
         </div>
     );
 }
