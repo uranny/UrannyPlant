@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import getWeather from "../../api/weather";
 import type { WeatherResponse } from "../../types/weather";
 import PlantGIF from "../../assets/gif/plant.gif";
-import BackgorundImg from "../../assets/images/background.png"
+import BackgorundImg from "../../assets/images/background.png";
 import formatCategory from "../../utils/FormatCategory";
 import type { UserData } from "../../types/user";
 import { getUserData } from "../../api/user";
@@ -76,11 +76,15 @@ export default function Main() {
 
   return (
     <div className="relative w-screen h-screen bg-blue-200">
-      <div className="gap-3">{renderWeatherInfoList()}</div>
+      <img
+        className="absolute w-screen h-screen object-cover"
+        src={BackgorundImg}
+      />
       <img
         className="w-60 left-1/2 top-1/2 -translate-x-1/2 absolute object-contain"
         src={PlantGIF}
       />
+      <div className="gap-3 absolute">{renderWeatherInfoList()}</div>
     </div>
   );
 }
