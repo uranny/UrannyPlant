@@ -7,4 +7,11 @@
 
 * {
   -webkit-user-drag: none;
+  font-family: "inchun-reqular";
+}
+
+@font-face {
+  font-family: "inchun-reqular";
+  font-weight: normal;
+  src: url("./assets/fonts/inchun.ttf") format("truetype");
 }
