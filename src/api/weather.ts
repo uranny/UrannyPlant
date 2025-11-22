@@ -1,12 +1,31 @@
 import type { WeatherResponse } from "../types/weather";
 
+function getBaseTime() {
+  const date = new Date();
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+
+  let baseHour;
+
+  if (minute < 10) {
+    baseHour = hour - 2;
+  } else {
+    baseHour = hour;
+  }
+  if (baseHour < 0) {
+    baseHour += 24;
+  }
+  const baseTime = String(baseHour).padStart(2, "0") + "00";
+  return baseTime;
+}
+
 const getWeather = async (
   userNx: number | undefined,
   userNy: number | undefined
 ): Promise<WeatherResponse | undefined> => {
   const serviceKey = import.meta.env.VITE_PUBLIC_API_KEY;
-  const pageNo = 3;
-  const numOfRows = 1000;
+  const pageNo = 1;
+  const numOfRows = 10;
   const dataType = "JSON";
 
   const date = new Date();
@@ -15,7 +34,7 @@ const getWeather = async (
   const day = String(date.getDate()).padStart(2, "0");
 
   const base_date = `${year}${month}${day}`;
-  const base_time = "0600";
+  const base_time = getBaseTime();
 
   const nx = userNx;
   const ny = userNy;
